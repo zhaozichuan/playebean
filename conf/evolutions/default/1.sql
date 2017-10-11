@@ -1,41 +1,60 @@
-# --- First database schema
+# --- Created by Ebean DDL
+# To stop Ebean DDL generation, remove this comment and start using Evolutions
 
 # --- !Ups
 
 create table company (
-  id                        bigint not null,
-  name                      varchar(255),
-  constraint pk_company primary key (id))
-;
+  id                            bigint auto_increment not null,
+  name                          varchar(255),
+  constraint pk_company primary key (id)
+);
 
 create table computer (
-  id                        bigint not null,
-  name                      varchar(255),
-  introduced                timestamp,
-  discontinued              timestamp,
-  company_id                bigint,
-  constraint pk_computer primary key (id))
-;
+  id                            bigint auto_increment not null,
+  name                          varchar(255),
+  introduced                    datetime(6),
+  discontinued                  datetime(6),
+  company_id                    bigint,
+  constraint pk_computer primary key (id)
+);
 
-create sequence company_seq start with 1000;
+create table computer1 (
+  id                            bigint auto_increment not null,
+  name                          varchar(255),
+  introduced                    datetime(6),
+  discontinued                  datetime(6),
+  company_id                    bigint,
+  constraint pk_computer1 primary key (id)
+);
 
-create sequence computer_seq start with 1000;
+create table stock (
+  id                            bigint auto_increment not null,
+  code                          varchar(255),
+  name                          varchar(255),
+  simple_name                   varchar(255),
+  constraint pk_stock primary key (id)
+);
 
-alter table computer add constraint fk_computer_company_1 foreign key (company_id) references company (id) on delete restrict on update restrict;
-create index ix_computer_company_1 on computer (company_id);
+alter table computer add constraint fk_computer_company_id foreign key (company_id) references company (id) on delete restrict on update restrict;
+create index ix_computer_company_id on computer (company_id);
+
+alter table computer1 add constraint fk_computer1_company_id foreign key (company_id) references company (id) on delete restrict on update restrict;
+create index ix_computer1_company_id on computer1 (company_id);
 
 
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+alter table computer drop foreign key fk_computer_company_id;
+drop index ix_computer_company_id on computer;
+
+alter table computer1 drop foreign key fk_computer1_company_id;
+drop index ix_computer1_company_id on computer1;
 
 drop table if exists company;
 
 drop table if exists computer;
 
-SET REFERENTIAL_INTEGRITY TRUE;
+drop table if exists computer1;
 
-drop sequence if exists company_seq;
-
-drop sequence if exists computer_seq;
+drop table if exists stock;
 
