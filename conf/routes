@@ -24,6 +24,4 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 
 # 
-#GET     /stock/qstock               controllers.Stocks.stockQuery(mid:String,simpleCode:String)
-GET     /zzc                   		 controllers.T.count()
-
+GET     /qstock                   		 controllers.Cstock.q(Code:String )
