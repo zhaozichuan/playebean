@@ -34,6 +34,7 @@ public class HomeController extends Controller {
         this.formFactory = formFactory;
         this.companyRepository = companyRepository;
         this.httpExecutionContext = httpExecutionContext;
+        System.out.println("--->");
     }
 
     /**
