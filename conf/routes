@@ -24,4 +24,5 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 
 # 
-GET     /qstock                   		 controllers.Cstock.q(Code:String )
+GET     /q		                   		 controllers.Cstock.q(sName:String )
+GET     /q1		                   		 controllers.Cstock.q1(Code:String )

@@ -39,7 +39,33 @@ public class Cstock extends Controller {
 	     * <code>GET</code> requests with a path of <code>/count</code>
 	     * requests by an entry in the <code>routes</code> config file.
 	     */
-	    public Result q(String Code) {
+	    public Result q(String simpleCode) {
+	        
+//	    	Stock sk=new Stock("600030");
+	    	ResultRtn resultRtn = new ResultRtn();
+	    	List<Stock> sc=null;
+	    	if(simpleCode.matches("^[-+]?(([0-9]+)([.]([0-9]+))?|([.]([0-9]+))?)$")){
+	    		simpleCode="%"+simpleCode+"%";		
+	    		sc=ebeanServer.find(Stock.class).where().like("code", simpleCode).findList();
+//	    		System.out.println("query stock simple belong code");
+	    	}else{
+	    		simpleCode="%"+simpleCode+"%";
+			//RealData realData=new RealData();
+//	    		System.out.println("query stock simple belong simple_name");
+	    		sc=ebeanServer.find(Stock.class).where().like("simple_name", simpleCode).findList();		
+	    	}
+	    	
+	    	
+	    	resultRtn.errCode = 0;
+			resultRtn.business.put("Stock", sc);
+	    	
+	    	return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+//	    	return ok("--->"+Stock.find.query("code").findUnique().name);
+	    	
+	    }
+	    
+	    
+         public Result q1(String Code) {
 	        
 //	    	Stock sk=new Stock("600030");
 	    	ResultRtn resultRtn = new ResultRtn();
