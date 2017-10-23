@@ -26,3 +26,4 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 # 
 GET     /qq		                   		 controllers.Cstock.q(sName:String )
 GET     /q1		                   		 controllers.Cstock.q1(Code:String )
+GET     /myStockList		             controllers.Cuser.myStockList(mid:String,userId:String )

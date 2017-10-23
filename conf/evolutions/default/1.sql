@@ -55,6 +55,7 @@ create table user (
   beiyong1                      varchar(255),
   stock_order                   varchar(255),
   image_url                     varchar(255),
+  user_id                       integer not null,
   name                          varchar(255),
   password                      varchar(255),
   update_time                   datetime(6),
