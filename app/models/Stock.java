@@ -1,6 +1,6 @@
 package models;
 
-import io.ebean.Finder;
+
 import javax.persistence.*;
 import play.data.validation.*;
 import java.util.ArrayList;
@@ -36,8 +36,6 @@ public class Stock extends BaseModel {
     }
     
     
-    public static Finder<String, Stock> find = new Finder<String, Stock>(
-            Stock.class
-    );
+//	public static Query<Stock> find = new Finder<String, Stock>(Stock.class).query();
    
 }
