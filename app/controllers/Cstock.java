@@ -2,14 +2,12 @@ package controllers;
 
 import play.db.ebean.EbeanConfig;
 import play.libs.Json;
-import models.Computer;
 import models.Stock;
 import play.mvc.Controller;
 import play.mvc.Result;
 import repository.DatabaseExecutionContext;
 import util.ResultRtn;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -24,12 +22,10 @@ public class Cstock extends Controller {
 	}
 	
 	private final EbeanServer ebeanServer;
-    private final DatabaseExecutionContext executionContext;
 
     @Inject
     public Cstock(EbeanConfig ebeanConfig, DatabaseExecutionContext executionContext) {
         this.ebeanServer = Ebean.getServer(ebeanConfig.defaultServer());
-        this.executionContext = executionContext;
     }
 	
 
