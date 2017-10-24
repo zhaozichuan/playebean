@@ -54,8 +54,15 @@ public class Cstock extends Controller {
 	    	
 	    	resultRtn.errCode = 0;
 			resultRtn.business.put("Stock", sc);
-	    	
-	    	return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+			StringBuffer reStr=new StringBuffer("<ul>");
+			for(int i=0; i<sc.size();i++){
+				reStr.append("<li><a href=\"javascript:alert(\'ok\')\">")
+				     .append(sc.get(i).name)
+				     .append("</a></li>");
+			}
+			    reStr.append("</ui>");
+			return ok(reStr.toString());
+//          return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
 //	    	return ok("--->"+Stock.find.query("code").findUnique().name);
 	    	
 	    }
