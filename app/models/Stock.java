@@ -3,8 +3,6 @@ package models;
 
 import javax.persistence.*;
 import play.data.validation.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 股票

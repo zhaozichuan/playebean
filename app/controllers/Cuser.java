@@ -4,6 +4,7 @@ import play.db.ebean.EbeanConfig;
 import play.libs.Json;
 import models.Stock;
 import models.User;
+import models.User_stock_r;
 import play.mvc.Controller;
 import play.mvc.Result;
 import repository.DatabaseExecutionContext;
@@ -59,28 +60,122 @@ public class Cuser extends Controller {
          
          
          public Result myStockList(String mid,String userId) {
-        	 User  uc =null;
- 	    	ResultRtn resultRtn = new ResultRtn();
- 	               uc =ebeanServer.find(User.class).where().eq("userId", userId)
-                     				.findUnique();
- 	       Stock s=new Stock("");
- 	       List<Stock> sc = new ArrayList<Stock>();
- 	       
- 	        if(uc==null)
- 	        {
- 	        	sc.add(s);
+        	
+             List<User_stock_r>   User_stock_r_list =null;
+        	 
+        	 ResultRtn resultRtn = new ResultRtn();
+ 	    	
+ 	    	
+ 	        try {     
+ 	    	
+ 	           User_stock_r_list =ebeanServer.find(User_stock_r.class).where().eq("userId", userId)
+          				
+ 	        		               .findList();
  	        
- 	        }else{
- 	            
- 	        	sc =uc.stocks;
+ 	        }catch(Exception e) {
+ 	        	
+ 	        	resultRtn.errCode = 1;
+           	    resultRtn.msg =e.getMessage();
+           	    return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
  	        }
+ 	        
+ 	       
+ 	      //  String [] arrayStock=  stockOrder.split("\\|"); 
+ 	      // Stock s=new Stock("");
+ 	      // List<String> sc = new ArrayList<String>();
+ 	       
  	    	
  	        resultRtn.errCode = 0;
- 			resultRtn.business.put("Stock", sc);
- 	    	
+ 			resultRtn.business.put("myStock", User_stock_r_list.get(0).stock);
  	    	return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
          	
  	    }
 
 
+         
+         
+         
+         
+         public Result myStockAdd(String mid,String userId,String stockCode) {
+        	 
+        	 List<User>  userObj_list =null;
+ 	    	 ResultRtn   resultRtn = new ResultRtn();
+  	         User_stock_r User_stock_r_obj=null;
+ 	    	 try {     
+ 	 	    	
+ 	    		userObj_list =ebeanServer.find(User.class).where().eq("userId", userId)
+                      				.findList();
+  	    	    
+ 	    		if(userObj_list==null) {
+ 	 	    		 resultRtn.errCode = 1;
+ 	            	  resultRtn.msg = "user is not exsit";
+ 	            	 return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+ 	 	    		
+ 	 	    	}
+ 	    		
+ 	    		
+ 	    		if(userObj_list.size()>1) {
+ 		    		 resultRtn.errCode = 1;
+ 	           	     resultRtn.msg = "userId is more than one";
+ 	           	 return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+ 	           	   
+ 	              
+ 		    		
+ 		    	}
+ 	    		
+ 	    		
+ 	    		
+ 	    		List<Stock> stockList= ebeanServer.find(Stock.class).where().eq("code",stockCode)
+ 	    				.findList();
+ 	    		
+ 	    		if(stockList==null||stockList.size()==0) {
+	 	    		 resultRtn.errCode = 1;
+	            	  resultRtn.msg = "stock is not exsit";
+	            	 return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+	 	    		
+	 	    	}
+ 	    		
+ 	    		int mystockcount= ebeanServer.find(User_stock_r.class).where().eq("user_id",userId)
+ 	    				.eq("stock_id", stockList.get(0).id).findCount();
+ 	    		
+ 	    		if(mystockcount < 1) {																		
+	 	    		User_stock_r_obj=new User_stock_r();
+	 	    		User_stock_r_obj.user=userObj_list.get(0);
+	 	    		User_stock_r_obj.put_price =0.00;
+	 	    		User_stock_r_obj.stock = stockList.get(0);
+	 	    		User_stock_r_obj.memo = stockList.get(0).name;
+	 	    		User_stock_r_obj.save();
+ 	    		}
+  	        
+  	        }catch(Exception e) {
+  	        	
+  	        	resultRtn.errCode = 1;
+            	    resultRtn.msg =e.getMessage();
+            	    return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+  	        }
+ 	    	
+ 	    
+ 	    	//userObj_list.get(0).stockOrder;
+ 	    	
+ 	    	
+ 	    	
+ 	      
+ 	         
+// 	         int stockCount =ebeanServer.find(User.class).where().eq("userId", userId)
+// 	        		.eq("Stock.stock_id", stockCode).findCount();
+ 	         
+ 	        
+ 	         
+ 	      
+ 	       
+ 	            
+ 	       // userObj.stocks.add(stockCode);
+ 	       //  userObj.save();
+ 	       //  Sto  ck stock=new 
+ 	        resultRtn.errCode = 0;
+ 			resultRtn.msg="Stock add ok";
+ 	    	
+ 	    	return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+         	
+ 	    }
 }

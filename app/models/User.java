@@ -83,8 +83,8 @@ public class User extends BaseModel {
 
     public String mid;
 
-    @OneToOne(fetch=FetchType.LAZY)
-    public Avatar avatar;
+//    @OneToOne(fetch=FetchType.LAZY)
+//    public Avatar avatar;
 
     @Transient
     public String authCode;
@@ -92,8 +92,8 @@ public class User extends BaseModel {
     /**
      * 自选股
      */
-    @ManyToMany(cascade=CascadeType.ALL)
-    public List<Stock> stocks = new ArrayList<Stock>();   
+//    @ManyToMany(cascade=CascadeType.ALL)
+//    public List<String> stocks = new ArrayList<String>();   
     
   //@OneToMany(cascade=CascadeType.ALL)
     
@@ -149,14 +149,7 @@ public class User extends BaseModel {
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy="user")
 //    public List<Notification> notifications;
 
-    public List<Stock> getStocks() {
-		return stocks;
-	}
-
-	public void setStocks(List<Stock> stocks) {
-		this.stocks = stocks;
-	}
-
+    
 	public User(long mobile) {
         this.mobile= mobile;
     }
