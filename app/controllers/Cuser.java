@@ -68,7 +68,7 @@ public class Cuser extends Controller {
  	    	
  	        try {     
  	    	
- 	           User_stock_r_list =ebeanServer.find(User_stock_r.class).where().eq("userId", userId)
+ 	           User_stock_r_list =ebeanServer.find(User_stock_r.class).where().eq("user_Id", userId)
           				
  	        		               .findList();
  	        
@@ -86,7 +86,7 @@ public class Cuser extends Controller {
  	       
  	    	
  	        resultRtn.errCode = 0;
- 			resultRtn.business.put("myStock", User_stock_r_list.get(0).stock);
+ 			resultRtn.business.put("myStock", User_stock_r_list);
  	    	return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
          	
  	    }
@@ -145,11 +145,18 @@ public class Cuser extends Controller {
 	 	    		User_stock_r_obj.stock = stockList.get(0);
 	 	    		User_stock_r_obj.memo = stockList.get(0).name;
 	 	    		User_stock_r_obj.save();
+ 	    		}else {
+ 	    			resultRtn.errCode = 1;
+            	    resultRtn.msg ="Stock is added";
+            	    return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+  	    
+ 	    			
+ 	    			
  	    		}
   	        
   	        }catch(Exception e) {
   	        	
-  	        	resultRtn.errCode = 1;
+  	        	    resultRtn.errCode = 1;
             	    resultRtn.msg =e.getMessage();
             	    return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
   	        }
