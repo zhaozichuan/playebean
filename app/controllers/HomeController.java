@@ -50,7 +50,40 @@ public class HomeController extends Controller {
     public Result index() {
         return GO_HOME;
     }
+    
+//    public Result help() {
+//    	
+//    	
+//           return render("aaa","content"));
+//         
+//    	
+//        
+//       
+//    }
 
+//    public CompletionStage<Result> help1() {
+//        // Run a db operation in another thread (using DatabaseExecutionContext)
+//         return computerRepository.page().thenApplyAsync(list -> {
+//            // This is the HTTP rendering thread context
+//            return ok(views.html.help1.render());
+//        }, httpExecutionContext.current());
+//    
+//            
+//    
+//    }
+    
+    
+    
+
+//    public CompletionStage<Result> list1(int page, String sortBy, String order, String filter) {
+//        // Run a db operation in another thread (using DatabaseExecutionContext)
+//        return computerRepository.page(page, 10, sortBy, order, filter).thenApplyAsync(list -> {
+//            // This is the HTTP rendering thread context
+//            return ok(views.html.list1.render(list, sortBy, order, filter));
+//        }, httpExecutionContext.current());
+//    }
+    
+    
     /**
      * Display the paginated list of computers.
      *

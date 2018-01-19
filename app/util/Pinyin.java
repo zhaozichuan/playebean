@@ -78,7 +78,7 @@ public class Pinyin {
         	
         	//strBuf.append("aaa");
         }
-        return strBuf.toString();
+        return strBuf.toString();	
     }
 
     public static void main(String[] args) {

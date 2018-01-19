@@ -49,6 +49,10 @@ public class ComputerRepository {
         } , executionContext);
     }
 
+    
+
+    
+    
     public CompletionStage<Optional<Computer>> lookup(Long id) {
         return supplyAsync(() -> {
             return Optional.ofNullable(ebeanServer.find(Computer.class).setId(id).findUnique());

@@ -23,7 +23,9 @@ POST    /computers/:id/delete       controllers.HomeController.delete(id:Long)
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 
-# 
+# zzc 2018-1-16
+GET     /list1                           controllers.TController.list1(p:Int ?= 0, s ?= "time", o ?= "desc", f ?= "")
+GET     /help1                     	     controllers.TController.help1()
 GET     /qq		                   		 controllers.Cstock.q(sName:String )
 GET     /q1		                   		 controllers.Cstock.q1(Code:String )
 GET     /myStockList		             controllers.Cuser.myStockList(mid:String,userId:String )

@@ -27,6 +27,15 @@ create table computer (
   constraint pk_computer primary key (id)
 );
 
+create table news (
+  id                            integer auto_increment not null,
+  title                         varchar(255),
+  url                           varchar(255),
+  classify                      varchar(255),
+  time                          varchar(255),
+  constraint pk_news primary key (id)
+);
+
 create table role (
   id                            integer auto_increment not null,
   name                          varchar(255),
@@ -113,6 +122,8 @@ drop table if exists avatar;
 drop table if exists company;
 
 drop table if exists computer;
+
+drop table if exists news;
 
 drop table if exists role;
 
