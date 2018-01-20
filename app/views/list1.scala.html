@@ -75,7 +75,7 @@
 
                 @for(news <- currentPage.getList.asScala) {
                     <tr>
-                        <td>@news.title</td>
+                        <td><a href="@news.url" target="_blank"> @news.title </a></td>
                         <td>
                             @if(news.time == null) {
                                 <em>-</em>
@@ -83,7 +83,7 @@
                                 @news.time.format("yyyy-MM-dd")
                             }
                         </td>
-                    
+                    <!--  
                         <td>
                             @if(news.url == null) {
                                 <em>-</em>
@@ -91,6 +91,7 @@
                                 <a href="@news.url" target="_blank"> @news.url</a>
                             }
                         </td>
+                        -->
                     </tr>
                 }
 
