@@ -31,13 +31,13 @@
 ***********************************@
 @header(key:String, title:String) = {
     <th class="@key.replace(".","_") header @if(currentSortBy == key) { @{if(currentOrder == "asc") "headerSortDown" else "headerSortUp" } }">
-        <a href="@link(0, key)">@title</a>
+       <a href="@link(0, key)">@title</a> 
     </th>
 }
 
 @main {
 
-    <h1 id="homeTitle">@Messages("result", currentPage.getTotalCount)</h1>
+    <h1 id="homeTitle">@Messages("news.list.title", currentPage.getTotalCount)</h1>
 
     @if(flash.containsKey("success")) {
         <div class="alert-message warning">
@@ -67,7 +67,7 @@
         <table class="computers zebra-striped">
             <thead>
                 <tr>
-                    @header("title", "time news")
+                     @header("title", "time news")  
                    
                 </tr>
             </thead>
