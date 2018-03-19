@@ -11,7 +11,7 @@ public  class Op_csv {
     	List rowcsv=new ArrayList<>();
 	try {
 		
-		   BufferedReader reader = new BufferedReader(new FileReader(filename+"600030.csv"));//鎹㈡垚浣犵殑鏂囦欢鍚� 
+		   BufferedReader reader = new BufferedReader(new FileReader(filename+code+".csv"));//鎹㈡垚浣犵殑鏂囦欢鍚� 
 	        reader.readLine();//绗竴琛屼俊鎭紝涓烘爣棰樹俊鎭紝涓嶇敤,濡傛灉闇�瑕侊紝娉ㄩ噴鎺� 
 	        String line = null;  
 	        int count=100;

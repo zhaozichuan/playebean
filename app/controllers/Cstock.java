@@ -81,5 +81,19 @@ public class Cstock extends Controller {
 	    	
 	    }
 
+         
+//         public Result mystock(String userId) {
+// 	        
+//// 	    	Stock sk=new Stock("600030");
+// 	    	ResultRtn resultRtn = new ResultRtn();
+// 	    	List<Stock> sc =ebeanServer.find(Stock.class).where().eq("code", Code).findList();
+// 	    	resultRtn.errCode = 0;
+// 			resultRtn.business.put("Stock", sc);
+// 	    	
+// 	    	return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+//// 	    	return ok("--->"+Stock.find.query("code").findUnique().name);
+// 	    	
+// 	    }
+//         
 
 }
