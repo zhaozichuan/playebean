@@ -106,7 +106,7 @@ public class Cuser extends Controller {
  	    		userObj_list =ebeanServer.find(User.class).where().eq("userId", userId)
                       				.findList();
   	    	    
- 	    		if(userObj_list==null) {
+ 	    		if(userObj_list.size()==0) {
  	 	    		 resultRtn.errCode = 1;
  	            	  resultRtn.msg = "user is not exsit";
  	            	 return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
