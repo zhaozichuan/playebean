@@ -59,6 +59,24 @@ public class Cuser extends Controller {
 	    }
          
          
+         public Result login(String name,String pass) {
+ 	        
+// 	    	Stock sk=new Stock("600030");
+ 	    	ResultRtn resultRtn = new ResultRtn();
+ 	    	List<User> sc =ebeanServer.find(User.class).where().eq("name", name).findList();
+ 	    	
+ 	    	
+ 	    	resultRtn.errCode = 0;
+ 			resultRtn.business.put("User", sc);
+ 	    	
+ 	    	return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+// 	    	return ok("--->"+Stock.find.query("code").findUnique().name);
+         	
+ 	    }
+         
+         
+         
+         
          public Result myStockList(String mid,String userId) {
         	
              List<User_stock_r>   User_stock_r_list =null;
