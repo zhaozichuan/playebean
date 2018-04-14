@@ -8,6 +8,7 @@ import io.ebean.PagedList;
 import javax.inject.Inject;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletionStage;
 
@@ -57,4 +58,10 @@ public class NewsRepository {
         } , executionContext);
     }
 
+    
+    public PagedList<News> page1() {
+            return ebeanServer.find(News.class).where()
+                    .setMaxRows(5)
+                    .findPagedList();
+    }
 }
