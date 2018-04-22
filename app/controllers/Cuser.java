@@ -2,6 +2,8 @@ package controllers;
 
 import play.db.ebean.EbeanConfig;
 import play.libs.Json;
+import models.ResultData;
+import models.ResultData.MystockView;
 import models.Stock;
 import models.User;
 import models.User_stock_r;
@@ -17,6 +19,9 @@ import javax.inject.Inject;
 
 import io.ebean.Ebean;
 import io.ebean.EbeanServer;
+
+
+
 
 
 public class Cuser extends Controller {
@@ -59,17 +64,32 @@ public class Cuser extends Controller {
 	    }
          
          
-         public Result login(String name,String pass) {
- 	        
+         public Result login(String mid,String name,String pass) {
+ 	        System.out.println( "-login=====");
 // 	    	Stock sk=new Stock("600030");
  	    	ResultRtn resultRtn = new ResultRtn();
- 	    	List<User> sc =ebeanServer.find(User.class).where().eq("name", name).findList();
+ 	    	int usercount =ebeanServer.find(User.class).where().eq("name", name).findCount();
+ 	    	if(usercount<=0) {
+ 	    		resultRtn.errCode = 1;
+ 	    		resultRtn.msg =name+ "：user is not exsist";
+ 	    		return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
  	    	
+ 	    		
+ 	    	}
+ 	    	usercount=ebeanServer.find(User.class).where().eq("name", name).eq("password", pass).findCount();
+ 	    	
+ 	    	if(usercount<=0) {
+ 	    		resultRtn.errCode = 1;
+ 	    		resultRtn.msg =name+ "：user password error";
+ 	    		return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\"")).as("text/event-stream");
+ 	    	
+ 	    		
+ 	    	}
  	    	
  	    	resultRtn.errCode = 0;
- 			resultRtn.business.put("User", sc);
+ 	    	resultRtn.msg ="：login is ok";
  	    	
- 	    	return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+ 	    	return ok("tttt").as("text/event-stream");
 // 	    	return ok("--->"+Stock.find.query("code").findUnique().name);
          	
  	    }
@@ -97,14 +117,26 @@ public class Cuser extends Controller {
            	    return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
  	        }
  	        
- 	       
+ 	        
+ 	      // ResultData view = new ResultData();
+ 	         
+ 	         
+ 	         List<MystockView> stockviewList= new ArrayList();
+ 	         
+ 	         for(int i=0;i<User_stock_r_list.size(); i++) {
+ 	        	ResultData.MystockView stockview= new ResultData.MystockView();
+ 	        
+ 	        	stockview.stockCode=User_stock_r_list.get(i).stock.code;
+ 	        	stockview.stockName=User_stock_r_list.get(i).stock.name;
+ 	        	stockviewList.add(stockview);
+ 	         }
  	      //  String [] arrayStock=  stockOrder.split("\\|"); 
  	      // Stock s=new Stock("");
  	      // List<String> sc = new ArrayList<String>();
  	       
  	    	
  	        resultRtn.errCode = 0;
- 			resultRtn.business.put("myStock", User_stock_r_list);
+ 			resultRtn.business.put("myStock", stockviewList);
  	    	return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
          	
  	    }

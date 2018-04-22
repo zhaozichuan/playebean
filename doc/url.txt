@@ -2,5 +2,13 @@
 ×ÔÑ¡¹É
 http://127.0.0.1:9000/assets/s.html
 
+µÇÂ¼
+http://127.0.0.1:9000/assets/1.html
+
 ---app-----
 http://127.0.0.1:9000/myStockAdd?mid=1&StockCode=600030&userId=1
+http://127.0.0.1:9000/myStockList?mid=1&userId=1
+
+http://zhaozichuan.iask.in/myStockList?mid=1&userId=1
+µÇÂ¼
+http://127.0.0.1:9000/login?mid=1&name=zzc&pass=123
