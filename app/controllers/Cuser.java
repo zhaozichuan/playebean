@@ -25,6 +25,18 @@ import io.ebean.EbeanServer;
 
 
 public class Cuser extends Controller {
+	
+	
+	public  class MystockView{
+		   
+		   
+		   public String stockCode;
+		   public String stockName;
+		   
+		   
+		
+		
+	}
     
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -124,7 +136,7 @@ public class Cuser extends Controller {
  	         List<MystockView> stockviewList= new ArrayList();
  	         
  	         for(int i=0;i<User_stock_r_list.size(); i++) {
- 	        	ResultData.MystockView stockview= new ResultData.MystockView();
+ 	        	MystockView stockview= new MystockView();
  	        
  	        	stockview.stockCode=User_stock_r_list.get(i).stock.code;
  	        	stockview.stockName=User_stock_r_list.get(i).stock.name;
