@@ -21,6 +21,7 @@ import play.db.ebean.EbeanConfig;
  */
 @Entity
 public class User extends BaseModel {
+//public class User extends BaseModel {
 
 
     /**
@@ -197,6 +198,6 @@ public class User extends BaseModel {
 //        return null;
 //    }
     
-    
+    public static final Finder<Long, User> find = new Finder<>(User.class);
     
 }

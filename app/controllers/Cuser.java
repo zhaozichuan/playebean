@@ -13,6 +13,7 @@ import repository.DatabaseExecutionContext;
 import util.ResultRtn;
 
 import java.util.ArrayList;
+import java.util.Base64.Decoder;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -105,6 +106,48 @@ public class Cuser extends Controller {
 // 	    	return ok("--->"+Stock.find.query("code").findUnique().name);
          	
  	    }
+         
+         
+         
+         public Result reg(String mid,String name,String pass,String phone,int level) {
+  	 
+        	System.out.println( "====register=====");
+  	    	ResultRtn resultRtn = new ResultRtn();
+  	    	int usercount =ebeanServer.find(User.class).where().eq("name", name).findCount();
+  	    	if(usercount> 0) {
+  	    		resultRtn.errCode = 1;
+  	    		resultRtn.msg =name+ "：user is exsist";
+  	    		return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+  	    	
+  	    		
+  	    	}
+
+  	     	User regUser= new User(Long.parseLong(phone));
+  	    	
+  	     	   regUser.name = name ;
+  	    	   regUser.password = pass;  
+  	    	   regUser.level = level;
+  	    	   regUser.save();
+  	   	    	
+  	    	
+//  	    	usercount=ebeanServer.find(User.class).where().eq("name", name).eq("password", pass).findCount();
+//  	    	
+//  	    	if(usercount<=0) {
+//  	    		resultRtn.errCode = 1;
+//  	    		resultRtn.msg =name+ "：user password error";
+//  	    		return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\"")).as("text/event-stream");
+//  	    	
+//  	    		
+//  	    	}
+  	    	
+  	    	resultRtn.errCode = 0;
+  	    	resultRtn.msg ="：register is ok";
+  	    	
+  	    	return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+//  	    	return ok("--->"+Stock.find.query("code").findUnique().name);
+          	
+  	    }
+           
          
          
          
