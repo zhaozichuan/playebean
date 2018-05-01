@@ -94,7 +94,7 @@ public class Cdiscuss extends Controller {
 	    	
 	   
 //	   disobj.title = title;
-//	   disobj.content = content;
+//	   disobj.content = content;   
 //	   disobj.userid = Integer.parseInt(userid);
 //	   
 //	   disobj.save();
