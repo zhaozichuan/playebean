@@ -91,7 +91,7 @@ public class Cdiscuss extends Controller {
 	    	}
 	    	
 
-	    	
+	    	     
 	   
 //	   disobj.title = title;
 //	   disobj.content = content;   
