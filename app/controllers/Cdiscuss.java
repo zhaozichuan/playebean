@@ -102,7 +102,7 @@ public class Cdiscuss extends Controller {
 
 		resultRtn.errCode = 0;
 		resultRtn.msg = "ok";
-		resultRtn.business.put("business", Disobj_list);
+		resultRtn.business.put("discuss", Disobj_list);
 		return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
 		// return ok("--->"+Stock.find.query("code").findUnique().name);
 
