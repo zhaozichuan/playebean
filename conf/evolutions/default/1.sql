@@ -12,6 +12,18 @@ create table avatar (
   constraint pk_avatar primary key (id)
 );
 
+create table comment (
+  id                            integer auto_increment not null,
+  disid                         integer not null,
+  commid                        integer not null,
+  userid                        integer not null,
+  content                       varchar(255),
+  isreturn                      integer not null,
+  memo                          varchar(255),
+  createtime                    datetime(6) not null,
+  constraint pk_comment primary key (id)
+);
+
 create table company (
   id                            bigint auto_increment not null,
   name                          varchar(255),
@@ -25,6 +37,25 @@ create table computer (
   discontinued                  datetime(6),
   company_id                    bigint,
   constraint pk_computer primary key (id)
+);
+
+create table discuss (
+  id                            integer auto_increment not null,
+  title                         varchar(255),
+  content                       varchar(255),
+  userid                        integer not null,
+  memo                          varchar(255),
+  createtime                    datetime(6) not null,
+  constraint pk_discuss primary key (id)
+);
+
+create table favor (
+  id                            integer auto_increment not null,
+  disid                         integer not null,
+  userid                        integer not null,
+  memo                          varchar(255),
+  createtime                    datetime(6) not null,
+  constraint pk_favor primary key (id)
 );
 
 create table news (
@@ -119,9 +150,15 @@ drop index ix_user_stock_r_stock_id on user_stock_r;
 
 drop table if exists avatar;
 
+drop table if exists comment;
+
 drop table if exists company;
 
 drop table if exists computer;
+
+drop table if exists discuss;
+
+drop table if exists favor;
 
 drop table if exists news;
 

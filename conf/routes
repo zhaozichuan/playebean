@@ -33,3 +33,7 @@ GET     /myStockList		             controllers.Cuser.myStockList(mid:String,user
 GET     /myStockAdd		                 controllers.Cuser.myStockAdd(mid:String,userId:String,StockCode:String )
 GET     /login		                     controllers.Cuser.login(mid:String,name:String,pass:String )
 GET     /reg		                     controllers.Cuser.reg(mid:String,name:String,pass:String,phone:String,level:Int)
+
+#Discuss 
+GET     /addDis		                     controllers.Cdiscuss.addDis(mid:String,title:String,content:String,userId:String)
+GET     /disList                         controllers.Cdiscuss.disList(mid:String,max:Int ?=5)
