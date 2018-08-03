@@ -108,6 +108,64 @@ public class Cuser extends Controller {
  	    }
          
          
+         public Result reg_wx(String mid,String nickName,String pass,
+        		 String phone,
+        		 String avatarUrl,
+        		 int gender ,
+        		 String language,
+        		 String city,
+        		 String province,
+        		 String country,
+        		 int level) {
+          	 
+         	System.out.println( "====register=====");
+   	    	ResultRtn resultRtn = new ResultRtn();
+   	    	int usercount =ebeanServer.find(User.class).where().eq("name", nickName).findCount();
+   	    	if(usercount> 0) {
+   	    		resultRtn.errCode = 1;
+   	    		resultRtn.msg =nickName+ "：user is exsist";
+   	    		return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+   	    	
+   	    		
+   	    	}
+
+   	     	User regUser= new User(Long.parseLong(phone));
+   	    	
+   	     	  
+   	           regUser.gender = gender;
+	   	       regUser.language = language;
+	   	       regUser.city = city;
+	   	       regUser.province = province;
+	   	     
+	   	       regUser.imageUrl= avatarUrl;
+	   	       regUser.country =country;         
+   	        
+   	     	   regUser.name = nickName ;
+   	    	   regUser.password = pass;  
+   	    	   regUser.level = level;
+   	    	   regUser.save();
+   	   	    	
+   	    	
+//   	    	usercount=ebeanServer.find(User.class).where().eq("name", name).eq("password", pass).findCount();
+//   	    	
+//   	    	if(usercount<=0) {
+//   	    		resultRtn.errCode = 1;
+//   	    		resultRtn.msg =name+ "：user password error";
+//   	    		return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\"")).as("text/event-stream");
+//   	    	
+//   	    		
+//   	    	}
+   	    	
+   	    	resultRtn.errCode = 0;
+   	    	resultRtn.msg ="：register is ok";
+   	    	
+   	    	return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+//   	    	return ok("--->"+Stock.find.query("code").findUnique().name);
+           	
+   	    } 
+         
+         
+         
          
          public Result reg(String mid,String name,String pass,String phone,int level) {
   	 
