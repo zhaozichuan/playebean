@@ -52,7 +52,7 @@ def urlTolist(url):
     
     print(code[0][1])
     conn = pymysql.connect(user='root', passwd='zzc7382788',  
-                     host='cdb-nc05c3im.bj.tencentcdb.com:10027', db='playTest',charset='utf8')
+                     host='cdb-nc05c3im.bj.tencentcdb.com',port=10027, db='playTest',charset='utf8')
     for item in code:
            print(item[0],item[1])
            insert(conn,item[0],item[1],"")
