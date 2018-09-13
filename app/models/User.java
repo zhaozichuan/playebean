@@ -30,6 +30,8 @@ public class User extends BaseModel {
     public long mobile=0;
     
     public int level=0;
+    
+    public int gender=0;
 
     public String email="";
     
@@ -50,6 +52,14 @@ public class User extends BaseModel {
     public String stockOrder="";
     
     public String imageUrl="";
+    
+    public String language="";
+    
+    public String province="";
+    
+    public String city="";
+    
+    public String country="";
     
     
     @GeneratedValue(strategy = GenerationType.AUTO)
